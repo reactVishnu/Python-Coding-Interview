@@ -1,8 +1,10 @@
-# Big O - 
+## Big O - 
 >way of **comparing two piece of code** in a way that we could know how efficient a code was
 
-**Time Complexity:** - about time
-**Space Complexity :** - about memory space
+>**Time Complexity:** - about time
+
+
+>**Space Complexity :** - about memory space
 
 >**Omaega**(best case scenario) , **Theta**(avg case scenario) , **Omegron**(worst case scenario)
 
