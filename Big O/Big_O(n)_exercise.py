@@ -25,13 +25,14 @@
 # 8
 # 9
 
-def print_itmes(n):
+def print_items(n):
     for i in range(n):
         print(i)
-print_itmes
 
 
-list1 = {1,2,3,4}
+print_items(10)
+
+list1 = {1, 2, 3, 4}
 list2 = list1
 list2.add(5)
 print(f'List 1 is {list1}, and list 2 is {list2}')
