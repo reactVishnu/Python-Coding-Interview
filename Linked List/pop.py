@@ -29,11 +29,12 @@ class LinkedList:
         print()
 
     def pop(self):
+
         if self.length == 0:
             return None
         temp = self.head
         pre = self.head
-        while (temp.next):
+        while temp.next is not None:
             pre = temp
             temp = temp.next
         self.tail = pre
