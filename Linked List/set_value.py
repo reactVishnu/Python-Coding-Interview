@@ -13,9 +13,11 @@ class LinkedList:
 
     def print_items(self):
         temp = self.head
-        while self.head is not None:
-            print(temp.value)
+        ll = []
+        while temp is not None:
+            ll.append(temp.value)
             temp = temp.next
+        return ll
 
     def append(self, value):
         new_node = Node(value)
@@ -25,26 +27,8 @@ class LinkedList:
         else:
             self.tail.next = new_node
             self.tail = new_node
-
         self.length += 1
-
-    def pop(self):
-        if self.length == 0:
-            return None
-        temp = self.head
-        pre = self.head
-
-        while temp.next is not None:
-            pre = temp
-            temp = temp.next
-        self.tail = pre
-        self.tail.next = None
-        self.length -= 1
-        if self.length == 0:
-            self.head = None
-            self.tail = None
-
-        return temp.value
+        return True
 
     def prepend(self, value):
         new_node = Node(value)
@@ -57,15 +41,30 @@ class LinkedList:
         self.length += 1
         return True
 
+    def pop(self):
+        if self.length == 0:
+            return None
+        temp = self.head
+        pre = self.head
+        while temp.next is None:
+            pre = temp
+            temp = temp.next
+        self.tail = pre
+        self.tail.next = None
+        self.length -= 1
+        if self.length == 0:
+            self.head = None
+            self.tail = None
+
+        return temp.value
+
     def pop_first(self):
+        if self.length == 0:
+            return None
         temp = self.head
         self.head = self.head.next
         temp.next = None
-
         self.length -= 1
-        if self.length == 0:
-            self.tail = None
-        return temp.value
 
     def get(self, index):
         if index < 0 or index >= self.length:
@@ -73,5 +72,21 @@ class LinkedList:
         temp = self.head
         for _ in range(index):
             temp = temp.next
-        return temp.value
+        return temp
 
+    def set_value(self, index, value):
+        temp = self.get(index)
+        if temp is not None:
+            temp.value = value
+            return True
+        return False
+
+
+linkedlist = LinkedList(0)
+# linkedlist.append(1)
+# linkedlist.append(2)
+# linkedlist.append(3)
+# linkedlist.append(4)
+print(linkedlist.print_items())
+linkedlist.set_value(0,9)
+print(linkedlist.print_items())
