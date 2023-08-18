@@ -5,7 +5,6 @@ class Node:
 
 
 class LinkedList:
-
     def __init__(self, value):
         new_node = Node(value)
         self.head = new_node
@@ -24,19 +23,18 @@ class LinkedList:
         new_node = Node(value)
         if self.head is None:
             self.head = new_node
-            self.head = new_node
+            self.tail = new_node
         else:
             self.tail.next = new_node
             self.tail = new_node
-
-        self.length += 1
+        self.length +=1
         return True
 
     def prepend(self, value):
         new_node = Node(value)
         if self.head is None:
-            self.head = new_node
-            self.tail = new_node
+            self.head = None
+            self.tail = None
         else:
             new_node.next = self.head
             self.head = new_node
@@ -48,17 +46,17 @@ class LinkedList:
             return None
         temp = self.head
         pre = self.head
-
         while temp.next is not None:
             pre = temp
             temp = temp.next
         self.tail = pre
         self.tail.next = None
-        self.length -= 1
-
+        if self.length == 0:
+            self.head = None
+            self.tail = None
         return temp.value
 
-    def pop_first(self, value, index):
+    def pop_first(self):
         if self.length == 0:
             return None
         temp = self.head
@@ -67,13 +65,14 @@ class LinkedList:
         self.length -= 1
         if self.length == 0:
             self.tail = None
+
         return temp.value
 
     def get(self, index):
-        if index < 0 or index >= self.length:
+        if index<0 or index >= self.length:
             return None
         temp = self.head
-        for _ in range(index):
+        for _ in range():
             temp = temp.next
         return temp
 
@@ -96,13 +95,40 @@ class LinkedList:
         new_node.next = temp.next
         temp.next = new_node
         self.length += 1
+        return True
 
+    def remove(self, index, value):
+        if index < 0 or index < self.length:
+            return None
+        if index == 0:
+            return self.pop_first()
+        if index == self.length:
+            return self.pop()
+        pre = self.get(index-1)
+        temp = pre.next
+        pre.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp.value
+
+    def reverse(self):
+        temp = self.head
+        pre = self.tail
+        self.head = pre
+        self.tail = temp
+        after = temp.next
+        before = None
+        for _ in range(self.length):
+            after = temp.next
+            temp.next = before
+            before = temp
+            temp = after
 
 linked_list = LinkedList(4)
 linked_list.append(3)
 linked_list.append(2)
+linked_list.append(1)
 print(linked_list.print_items())
-linked_list.set_value(1, 4)
+linked_list.reverse()
 print(linked_list.print_items())
-linked_list.insert(3, 5)
-print(linked_list.print_items())
+
